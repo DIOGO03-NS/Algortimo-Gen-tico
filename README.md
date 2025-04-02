@@ -113,29 +113,3 @@ Se encontrou a solução, para.
 Caso contrário, cria uma nova geração aplicando seleção, crossover e mutação.
 
 Repete até encontrar a string-alvo.
-
-🎮 Como Executar
-
-Instale o Python (3.x).
-
-Copie o código acima e cole em um arquivo genetic_algorithm.py.
-
-Execute no terminal:
-
-python genetic_algorithm.py
-
-Veja a evolução da população até encontrar a frase "Hello, World!".
-
-📊 Exemplo de Saída
-
-Geração 0: #$r@e>_!T2/]
-Geração 10: H@l!o, Xortd!
-Geração 30: Hello, Wxrld!
-Geração 50: Hello, World!
-Solução encontrada na geração 50: Hello, World!
-
-📚 Referências
-
-Algoritmos Genéticos - David E. Goldberg
-
-"Genetic Algorithms in Search, Optimization and Machine Learning"

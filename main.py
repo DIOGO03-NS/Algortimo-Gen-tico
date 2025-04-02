@@ -1,10 +1,10 @@
 import random
 import time
 
-POP_SIZE = 1000         # Tamanho da população
+POP_SIZE = 1000         
 MUTATION_RATE = 0.1     # Taxa de mutação (10%)
-GENERATIONS = 10000     # Número máximo de gerações
-TARGET = "Diogo Nogueira" # Solução desejada
+GENERATIONS = 1000      
+TARGET = "Diogo" 
 
 # gera opções aleatorias
 def gerar_individuo():
