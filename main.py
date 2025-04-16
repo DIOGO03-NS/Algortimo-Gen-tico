@@ -1,10 +1,9 @@
 import random
 import time
 
-POP_SIZE = 1000         
-MUTATION_RATE = 0.1     # Taxa de mutação (10%)
-GENERATIONS = 1000      
-TARGET = "Diogo" 
+POP_SIZE = 100         
+MUTATION_RATE = 0.1    # Taxa de mutação (10%)
+TARGET = "O rato roeu a roupa do rei de roma" 
 
 # gera opções aleatorias
 def gerar_individuo():
@@ -18,7 +17,7 @@ def fitness(individuo):
 def selecionar_pais(populacao):
     soma_fit = sum(fitness(ind) for ind in populacao)
     pais = []
-    for _ in range(2):
+    for i in range(2):
         sorteio = random.uniform(0, soma_fit)
         acumulador = 0
         for ind in populacao:
@@ -38,21 +37,26 @@ def crossover(pai1, pai2):
 # mutação
 def mutacao(individuo):
     novo = ""
-    for ch in individuo:
+    for i, ch in enumerate(individuo):
         if random.random() < MUTATION_RATE:
-            novo += chr(random.randint(32, 126))
+            if ch == TARGET[i]:  # menor chance de mudar
+                novo += ch if random.random() > 0.9 else chr(random.randint(32, 126))
+            else:
+                # muda caracteres perto do alvo
+                novo += chr(random.randint(ord(TARGET[i]) - 2, ord(TARGET[i]) + 2))
         else:
             novo += ch
     return novo
 
 # inicialização da população
-populacao = [gerar_individuo() for _ in range(POP_SIZE)]
+populacao = [gerar_individuo() for i in range(POP_SIZE)]
 
-# início da contagem de tempo
+# cronometrar
 inicio = time.time()
+geracao = 0
 
 # evolução 
-for geracao in range(GENERATIONS):
+while True:
     # avaliação
     fitnesses = [fitness(ind) for ind in populacao]
     melhor_fit = max(fitnesses)
@@ -78,6 +82,8 @@ for geracao in range(GENERATIONS):
         if len(nova_pop) < POP_SIZE:
             nova_pop.append(mutacao(filho2))
     populacao = nova_pop
+
+    geracao+=1
 
 # solução não encontrada
 if melhor_fit < len(TARGET):
